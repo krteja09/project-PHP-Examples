@@ -1,8 +1,17 @@
 <?php
 
+/**
+ * Class searchReplace
+ */
 class searchReplace
 {
 
+    /**
+     * @param string $text
+     * @param string $searchFor
+     * @param string $replaceWith
+     * @return string
+     */
     public function run($text, $searchFor, $replaceWith)
     {
         $offset = 0;
