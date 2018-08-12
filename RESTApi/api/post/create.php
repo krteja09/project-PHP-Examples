@@ -24,7 +24,7 @@ $post->author = $data->author;
 $post->category_id = $data->category_id;
 
 // Create post
-if($post->create()) {
+if ($post->create()) {
     echo json_encode(
         array('message' => 'Post Created')
     );
@@ -33,4 +33,3 @@ if($post->create()) {
         array('message' => 'Post Not Created')
     );
 }
-

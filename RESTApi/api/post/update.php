@@ -19,7 +19,6 @@ $post = new Post($db);
 $data = json_decode(file_get_contents("php://input"));
 
 //Set ID to update
-
 $post->id = $data->id;
 
 $post->title = $data->title;
@@ -28,7 +27,7 @@ $post->author = $data->author;
 $post->category_id = $data->category_id;
 
 // Create post
-if($post->update()) {
+if ($post->update()) {
     echo json_encode(
         array('message' => 'Post Updated')
     );
@@ -37,4 +36,3 @@ if($post->update()) {
         array('message' => 'Post Not Updated')
     );
 }
-

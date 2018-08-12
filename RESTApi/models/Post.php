@@ -7,7 +7,6 @@ class Post
 
     private $table = 'posts';
 
-
     public $id;
 
     public $category_id;
@@ -24,13 +23,17 @@ class Post
 
     /**
      * Post constructor.
-     * @param $db
+     * @param PDO $db
      */
     public function __construct($db)
     {
         $this->conn = $db;
     }
 
+    /**
+     * Read all posts
+     * @return mixed
+     */
     public function read()
     {
 
@@ -100,8 +103,12 @@ class Post
 
     }
 
-    // Create Post
-    public function create() {
+    /**
+     * Create Post
+     * @return bool
+     */
+    public function create()
+    {
         // Create query
         $query = 'INSERT INTO ' . $this->table . ' SET title = :title, body = :body, author = :author, category_id = :category_id';
 
@@ -121,7 +128,7 @@ class Post
         $stmt->bindParam(':category_id', $this->category_id);
 
         // Execute query
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         }
 
@@ -131,8 +138,12 @@ class Post
         return false;
     }
 
-    // Update Post
-    public function update() {
+    /**
+     * Update Post
+     * @return bool
+     */
+    public function update()
+    {
         // Create query
         $query = 'UPDATE ' . $this->table .
             ' SET title = :title, body = :body, author = :author, category_id = :category_id WHERE id = :id';
@@ -155,7 +166,7 @@ class Post
         $stmt->bindParam(':id', $this->id);
 
         // Execute query
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         }
 
@@ -165,9 +176,14 @@ class Post
         return false;
     }
 
-    public function delete(){
+    /**
+     * Delete post
+     * @return bool
+     */
+    public function delete()
+    {
         //create query
-        $query = 'DELETE FROM ' .$this->table . ' WHERE id = :id';
+        $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
 
         //prepare statement
         $stmt = $this->conn->prepare($query);
@@ -178,7 +194,7 @@ class Post
         $stmt->bindParam(':id', $this->id);
 
         // Execute query
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         }
 
@@ -186,8 +202,6 @@ class Post
         printf("Error: %s.\n", $stmt->error);
 
         return false;
-
-
     }
 
 }
